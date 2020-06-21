@@ -1,7 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
-ReactDOM.render(
-<h2>Hello React from JSX { Math.random().toFixed(2) }</h2>,
-    document.getElementById('root')
-);
+const Header = ({ message }) => {
+    return (
+        <h2>
+            Mambo Header { message }
+        </h2>
+    )
+};
+
+const App = () => {
+    return (
+        <div className="App">
+            <Header message="Hello Nigga" />
+            <div>
+                dfsds
+            </div>
+        </div>
+    )
+}
+
+Header.propTypes = {
+    message: PropTypes.string
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
