@@ -1,7 +1,7 @@
 # Node js & React
 
-**1.** Run server to listen node server \
+**1.** listen node server for API request handling \
 `./node_modules/.bin/babel-node server.js`
 
-**2.** Run in dev mode for debug \
-`npm run debug`
+**2.** Start application \
+`npm run start`
