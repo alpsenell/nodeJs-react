@@ -4,4 +4,4 @@
 `./node_modules/.bin/babel-node server.js`
 
 **2.** Start application \
-`npm run start`
+`npm run dev`
