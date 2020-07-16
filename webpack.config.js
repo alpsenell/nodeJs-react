@@ -7,12 +7,21 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader'
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+            {
+                test: /\.jsson$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'json-loader'
+                }
             }
-        }]
+        ]
     }
 };

@@ -1,0 +1,24 @@
+{
+  "contests": [
+    {
+      "id": 1,
+      "categoryName": "Graphic Design",
+      "contestName": "Mastering in Photoshop"
+    },
+    {
+      "id": 2,
+      "categoryName": "Sports",
+      "contestName": "Speed Running"
+    },
+    {
+      "id": 3,
+      "categoryName": "Software Component",
+      "contestName": "Machine Learning Keys"
+    },
+    {
+      "id": 4,
+      "categoryName": "Website",
+      "contestName": "Free domains"
+    }
+  ]
+}

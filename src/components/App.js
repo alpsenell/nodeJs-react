@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from './Header';
+import ContestPreview from './ContestPreview';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
     state = {
-        pageHeader: 'Naimg Contests'
+        pageHeader: 'Naming Contests'
     };
 
     componentDidMount() {
-        console.log('did mount')
+        console.log()
     }
 
     componentWillUnmount() {
@@ -19,11 +21,19 @@ class App extends React.Component {
             <div className="App">
                 <Header message={ this.state.pageHeader } />
                 <div>
-                    App.js
+                    {
+                        this.props.contests.map(contest =>
+                            <ContestPreview { ...contest } />
+                        )
+                    }
                 </div>
             </div>
         )
     }
 }
+
+App.propTypes = {
+    contests: PropTypes.array
+};
 
 export default App;
