@@ -2,10 +2,10 @@ import React from 'react';
 
 const ContestPreview = (contest) => (
     <div className="contestPreview">
-        <div>
+        <div className="contestCategory">
             { contest.categoryName }
         </div>
-        <div>
+        <div className="contestName">
             { contest.contestName }
         </div>
     </div>
