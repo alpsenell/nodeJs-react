@@ -30,6 +30,7 @@ module.exports = {
                 'dir',
                 'trace'
             ]
-        }]
+        }],
+        'object-curly-spacing': ['error', 'always']
     }
 };

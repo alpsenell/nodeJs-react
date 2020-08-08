@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
 import TodoList from './TodoList';
 
-class App extends React.Component {
+const pushState = (obj, url) =>
+    window.history.pushState(obj, '', url);
+
+class App extends Component {
     state = {
         pageHeader: 'Todo List',
         todos: []
     };
 
-    componentDidMount() {
+    componentDidMount () {
         axios.get('/api/get-todos')
-            .then( response => {
+            .then(response => {
                 this.setState({
                     todos: response.data.todos
                 });
@@ -21,11 +24,20 @@ class App extends React.Component {
             });
     }
 
+    fetchTodo = (todoId) => {
+        pushState(
+            { currentTodoId: todoId },
+            `/todo/${ todoId }`
+        );
+    };
+
     render () {
         return (
             <div className="App">
-                <Header message={ this.state.pageHeader } />
-                <TodoList todos={ this.state.todos }/>
+                <Header message={ this.state.pageHeader }/>
+                <TodoList
+                    onTodoClick={ this.fetchTodo }
+                    todos={ this.state.todos }/>
             </div>
         );
     }
