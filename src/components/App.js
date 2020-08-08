@@ -1,39 +1,34 @@
 import React from 'react';
+import axios from 'axios';
 import Header from './Header';
-import ContestPreview from './ContestPreview';
-import PropTypes from 'prop-types';
+import TodoList from './TodoList';
 
 class App extends React.Component {
     state = {
-        pageHeader: 'Naming Contests'
+        pageHeader: 'Todo List',
+        todos: []
     };
 
     componentDidMount() {
-        console.log()
-    }
-
-    componentWillUnmount() {
-        console.log('will unmount')
+        axios.get('/api/get-todos')
+            .then( response => {
+                this.setState({
+                    todos: response.data.todos
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     render () {
         return (
             <div className="App">
                 <Header message={ this.state.pageHeader } />
-                <div>
-                    {
-                        this.props.contests.map(contest =>
-                            <ContestPreview { ...contest } />
-                        )
-                    }
-                </div>
+                <TodoList todos={ this.state.todos }/>
             </div>
-        )
+        );
     }
 }
-
-App.propTypes = {
-    contests: PropTypes.array
-};
 
 export default App;

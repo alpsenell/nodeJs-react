@@ -20,6 +20,6 @@ server.get('/', (request, response) => {
 server.use(express.static('public'));
 server.use('/api', apiRouter);
 
-server.listen(config.port, () => {
-    console.info('Express listening on port, ', config.port)
+server.listen(config.port, config.host, () => {
+    console.info('Express listening on port, ', config.port);
 });

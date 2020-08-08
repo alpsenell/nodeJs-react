@@ -1,24 +1,24 @@
 {
-  "contests": [
+  "todos": [
     {
       "id": 1,
-      "categoryName": "Graphic Design",
-      "contestName": "Mastering in Photoshop"
+      "title": "Go to the market",
+      "content": "Buy OMO detergent"
     },
     {
       "id": 2,
-      "categoryName": "Sports",
-      "contestName": "Speed Running"
+      "title": "Go to the gym",
+      "content": "Do 3 sets of Deadlift, 3 sets of Squad"
     },
     {
       "id": 3,
-      "categoryName": "Software Component",
-      "contestName": "Machine Learning Keys"
+      "title": "Call mom",
+      "content": "Ask about their holiday"
     },
     {
       "id": 4,
-      "categoryName": "Website",
-      "contestName": "Free domains"
+      "title": "Work",
+      "content": "Finish the task with an Id 104"
     }
   ]
 }

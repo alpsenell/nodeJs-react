@@ -1,11 +1,11 @@
-.contestPreview {
+.todo-item {
   border: 1px solid darkgray;
 
-  .contestCategory {
+  .todo-title {
     font-size: 20px;
   }
 
-  .contestName {
-    font-size: 16px;
+  .todo-content {
+    font-size: 12px;
   }
 }
