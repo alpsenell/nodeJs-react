@@ -8,6 +8,10 @@ import Todo from './Todo';
 const pushState = (obj, url) =>
     window.history.pushState(obj, '', url);
 
+const onPopState = handler => {
+    window.onpopstate = handler;
+};
+
 class App extends Component {
     state = {
         todos: {}
@@ -23,6 +27,16 @@ class App extends Component {
             .catch(error => {
                 console.error(error);
             });
+
+        onPopState(event =>
+            this.setState({
+                currentTodoId: (event.state || {}).currentTodoId
+            })
+        );
+    }
+
+    componentWillUnmount () {
+        onPopState(null);
     }
 
     fetchTodo = (todoId) => {
