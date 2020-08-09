@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import config from './config';
 import apiRouter from './api/index';
 import sassMiddleware from 'node-sass-middleware';
@@ -18,6 +19,7 @@ server.get(['/', '/todo/:todoId'], (request, response) => {
 });
 
 server.use(express.static('public'));
+server.use(bodyParser.json());
 server.use('/api', apiRouter);
 
 server.listen(config.port, config.host, () => {

@@ -11,7 +11,7 @@ router.get('/get-todos', (request, response) => {
             if (todos) {
                 response.status(200).json({ todos });
             } else {
-                response.status(404).json({ message: 'There are no datas in the Database' });
+                response.status(404).json({ message: 'There are no data in the Database' });
             }
         })
         .catch(error => {
@@ -22,8 +22,8 @@ router.get('/get-todos', (request, response) => {
 router.post('/todo', (request, response) => {
     const todo = new Todo({
         _id: new mongoose.Types.ObjectId(),
-        title: request.query.title,
-        content: request.query.content
+        title: request.body.title,
+        content: request.body.content
     });
 
     todo.save()
@@ -61,6 +61,38 @@ router.get('/todo/:todoId', (request, response) => {
         })
         .catch(error => {
             response.status(500).json({ error });
+        });
+});
+
+router.delete('/todo/:todoId', (request, response) => {
+    const id = request.params.todoId;
+
+    Todo.remove({ _id: id }).exec()
+        .then(result => {
+            response.status(200).json(result);
+        })
+        .catch(error => {
+            response.status(500).json(error);
+        });
+});
+
+router.patch('/todo/:todoId', (request, response) => {
+    const id = request.params.todoId;
+    const updateOperations = {};
+
+    for (const operations of request.body) {
+        updateOperations[operations.propName] = operations.value;
+    }
+
+    Todo.update(
+        { _id: id },
+        { $set: updateOperations }
+    ).exec()
+        .then(result => {
+            response.status(200).json(result);
+        })
+        .catch(error => {
+            response.status(500).json(error);
         });
 });
 
