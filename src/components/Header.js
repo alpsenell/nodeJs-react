@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const Header = ({ message }) => {
-    return (
-        <h2>
-            { message }
-        </h2>
-    );
-};
+class Header extends Component {
+    static propTypes = {
+        remainingTodoCount: PropTypes.number.isRequired
+    };
 
-Header.propTypes = {
-    message: PropTypes.string
-};
+    extraClassName = () => this.props.remainingTodoCount > 0 ? 'todos-remaining' : 'todos-accomplished';
+
+    render () {
+        return (
+            <h2 className={ `remaining-todos-container ${this.extraClassName()}` }>
+                { this.props.remainingTodoCount } Todos Left!
+            </h2>
+        );
+    }
+}
 
 export default Header;

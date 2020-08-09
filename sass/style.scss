@@ -1,23 +1,45 @@
-.todo-item-preview {
-  border: 1px solid darkgray;
-  cursor: pointer;
+@import "AddTodo";
 
-  .todo-preview-title {
-    font-size: 20px;
-  }
-
-  .todo-preview-content {
-    font-size: 12px;
-  }
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-
-.home-link {
-  padding: 10px 15px;
-  border: 1px solid black;
-  border-radius: 10px;
-  cursor: pointer;
-  width: 80px;
-  text-align: center;
-  background-color: #0000ee;
-  color: white;
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-color: #2c2b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .remaining-todos-container {
+    text-align: center;
+    &.todos-remaining {
+      color: red;
+    }
+    &.todos-accomplished {
+      color: #34b93d;
+    }
+  }
+  .todo-item-preview {
+    border: 1px solid darkgray;
+    cursor: pointer;
+    color: #fefefe;
+    .todo-preview-title {
+      font-size: 20px;
+    }
+    .todo-preview-content {
+      font-size: 12px;
+    }
+  }
+  .home-link {
+    padding: 10px 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 130px;
+    text-align: center;
+    background-color: #0000ee;
+    color: white;
+  }
 }

@@ -6,10 +6,10 @@ const TodoList = ({ todos, onTodoClick }) => {
     return (
         <div>
             {
-                Object.keys(todos).map(todoId =>
+                todos.map(todo =>
                     <TodoPreview
                         onTodoClick={ onTodoClick }
-                        key={ todoId } { ...todos[todoId] } />
+                        key={ todo._id } { ...todo } />
                 )
             }
         </div>
@@ -17,7 +17,7 @@ const TodoList = ({ todos, onTodoClick }) => {
 };
 
 TodoList.propTypes = {
-    todos: PropTypes.object,
+    todos: PropTypes.array,
     onTodoClick: PropTypes.func.isRequired
 };
 

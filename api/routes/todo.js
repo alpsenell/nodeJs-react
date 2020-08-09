@@ -23,7 +23,7 @@ router.post('/todo', (request, response) => {
     const todo = new Todo({
         _id: new mongoose.Types.ObjectId(),
         title: request.body.title,
-        content: request.body.content
+        content: request.body.content || ''
     });
 
     todo.save()

@@ -4,6 +4,7 @@ import * as api from '../api';
 import Header from './Header';
 import TodoList from './TodoList';
 import Todo from './Todo';
+import AddTodo from './AddTodo';
 
 const pushState = (obj, url) =>
     window.history.pushState(obj, '', url);
@@ -14,7 +15,7 @@ const onPopState = handler => {
 
 class App extends Component {
     state = {
-        todos: {}
+        todos: []
     };
 
     componentDidMount () {
@@ -70,13 +71,7 @@ class App extends Component {
         });
     };
 
-    pageHeader = () => {
-        if (this.state.currentTodoId) {
-            return this.currentTodo().title;
-        }
-
-        return 'Todo List';
-    };
+    remainingTodoCount = () => this.state.todos.length;
 
     currentTodo = () => {
         return this.state.todos[this.state.currentTodoId];
@@ -94,10 +89,29 @@ class App extends Component {
             todos={ this.state.todos }/>;
     }
 
+    checkTodoAlreadyExist = title => this.state.todos.some(todo => todo.title === title);
+
+    addTodoClick = (todo) => {
+        if (this.checkTodoAlreadyExist(todo.title)) {
+            return false;
+        }
+
+        axios.post('/api/todo', todo)
+            .then(response => {
+                if (response.status === 201) {
+                    this.fetchTodoList();
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
     render () {
         return (
             <div className="App">
-                <Header message={ this.pageHeader() }/>
+                <Header remainingTodoCount={ this.remainingTodoCount() }/>
+                <AddTodo addTodoClick={ this.addTodoClick }/>
                 { this.currentContent() }
             </div>
         );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class TodoPreview extends Component {
     handleClick = () => {
-        this.props.onTodoClick(this.props.id);
+        this.props.onTodoClick(this.props._id);
     };
 
     render () {
@@ -22,7 +22,7 @@ class TodoPreview extends Component {
 
 TodoPreview.propTypes = {
     title: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     onTodoClick: PropTypes.func.isRequired
 };
