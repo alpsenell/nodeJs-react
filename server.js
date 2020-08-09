@@ -13,7 +13,7 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 
-server.get('/', (request, response) => {
+server.get(['/', '/todo/:todoId'], (request, response) => {
     response.render('index');
 });
 

@@ -42,6 +42,20 @@ class App extends Component {
         });
     };
 
+    fetchTodoList = () => {
+        pushState(
+            { currentTodoId: null },
+            '/'
+        );
+
+        api.fetchAllTodos().then(todos => {
+            this.setState({
+                currentTodoId: null,
+                todos
+            });
+        });
+    };
+
     pageHeader = () => {
         if (this.state.currentTodoId) {
             return this.currentTodo().title;
@@ -56,7 +70,9 @@ class App extends Component {
 
     currentContent = () => {
         if (this.state.currentTodoId) {
-            return <Todo { ...this.currentTodo() }/>;
+            return <Todo
+                todoListClick={ this.fetchTodoList }
+                { ...this.currentTodo() }/>;
         }
 
         return <TodoList
