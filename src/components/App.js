@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import * as api from '../api';
 import Header from './Header';
 import TodoList from './TodoList';
 import Todo from './Todo';
@@ -9,7 +10,6 @@ const pushState = (obj, url) =>
 
 class App extends Component {
     state = {
-        pageHeader: 'TodoPreview List',
         todos: {}
     };
 
@@ -31,15 +31,32 @@ class App extends Component {
             `/todo/${ todoId }`
         );
 
-        this.setState({
-            pageHeader: this.state.todos[todoId].title,
-            currentTodoId: todoId
+        api.fetchTodo(todoId).then(todo => {
+            this.setState({
+                currentTodoId: todo.id,
+                todos: {
+                    ...this.state.todos,
+                    [todo.id]: todo
+                }
+            });
         });
+    };
+
+    pageHeader = () => {
+        if (this.state.currentTodoId) {
+            return this.currentTodo().title;
+        }
+
+        return 'Todo List';
+    };
+
+    currentTodo = () => {
+        return this.state.todos[this.state.currentTodoId];
     };
 
     currentContent = () => {
         if (this.state.currentTodoId) {
-            return <Todo { ...this.state.todos[this.state.currentTodoId] }/>;
+            return <Todo { ...this.currentTodo() }/>;
         }
 
         return <TodoList
@@ -50,7 +67,7 @@ class App extends Component {
     render () {
         return (
             <div className="App">
-                <Header message={ this.state.pageHeader }/>
+                <Header message={ this.pageHeader() }/>
                 { this.currentContent() }
             </div>
         );

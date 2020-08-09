@@ -19,4 +19,12 @@ router.get('/get-todos', (request, response) => {
     });
 });
 
+router.get('/get-todos/:todoId', (request, response) => {
+    let todo = alteredTodos[request.params.todoId];
+
+    todo.description = 'Lorem Ipsum';
+
+    response.send(todo);
+});
+
 export default router;
