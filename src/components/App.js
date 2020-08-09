@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
 import TodoList from './TodoList';
+import Todo from './Todo';
 
 const pushState = (obj, url) =>
     window.history.pushState(obj, '', url);
 
 class App extends Component {
     state = {
-        pageHeader: 'Todo List',
-        todos: []
+        pageHeader: 'TodoPreview List',
+        todos: {}
     };
 
     componentDidMount () {
@@ -29,15 +30,28 @@ class App extends Component {
             { currentTodoId: todoId },
             `/todo/${ todoId }`
         );
+
+        this.setState({
+            pageHeader: this.state.todos[todoId].title,
+            currentTodoId: todoId
+        });
     };
+
+    currentContent = () => {
+        if (this.state.currentTodoId) {
+            return <Todo { ...this.state.todos[this.state.currentTodoId] }/>;
+        }
+
+        return <TodoList
+            onTodoClick={ this.fetchTodo }
+            todos={ this.state.todos }/>;
+    }
 
     render () {
         return (
             <div className="App">
                 <Header message={ this.state.pageHeader }/>
-                <TodoList
-                    onTodoClick={ this.fetchTodo }
-                    todos={ this.state.todos }/>
+                { this.currentContent() }
             </div>
         );
     }

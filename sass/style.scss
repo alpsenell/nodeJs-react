@@ -1,12 +1,12 @@
-.todo-item {
+.todo-item-preview {
   border: 1px solid darkgray;
   cursor: pointer;
 
-  .todo-title {
+  .todo-preview-title {
     font-size: 20px;
   }
 
-  .todo-content {
+  .todo-preview-content {
     font-size: 12px;
   }
 }

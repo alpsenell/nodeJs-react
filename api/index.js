@@ -7,8 +7,16 @@ router.get('/', (request, response) => {
     response.send({ data: [] });
 });
 
+const alteredTodos = data.todos.reduce((obj, todo) => {
+    obj[todo.id] = todo;
+
+    return obj;
+}, {});
+
 router.get('/get-todos', (request, response) => {
-    response.send({ todos: data.todos });
+    response.send({
+        todos: alteredTodos
+    });
 });
 
 export default router;
