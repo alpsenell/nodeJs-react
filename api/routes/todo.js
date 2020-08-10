@@ -23,7 +23,7 @@ router.post('/todo', (request, response) => {
     const todo = new Todo({
         _id: new mongoose.Types.ObjectId(),
         title: request.body.title,
-        content: request.body.content || ''
+        status: false
     });
 
     todo.save()
@@ -67,7 +67,7 @@ router.get('/todo/:todoId', (request, response) => {
 router.delete('/todo/:todoId', (request, response) => {
     const id = request.params.todoId;
 
-    Todo.remove({ _id: id }).exec()
+    Todo.deleteOne({ _id: id }).exec()
         .then(result => {
             response.status(200).json(result);
         })
@@ -84,7 +84,7 @@ router.patch('/todo/:todoId', (request, response) => {
         updateOperations[operations.propName] = operations.value;
     }
 
-    Todo.update(
+    Todo.updateOne(
         { _id: id },
         { $set: updateOperations }
     ).exec()

@@ -1,13 +1,81 @@
+@keyframes inputBottomCheck {
+  0% {
+    height: 0;
+  }
+  to {
+    height: 12.5px;
+  }
+}
+@keyframes inputTopCheck {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 0;
+  }
+  to {
+    height: 30px;
+  }
+}
 .todo-item-preview {
   margin: 10px 0;
   cursor: pointer;
   color: #fefefe;
   position: relative;
+  input {
+    display: none;
+  }
+  label {
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border: 2.5px solid #fefefe;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: border-color .2s ease;
+    cursor: pointer;
+    float: left;
+    margin-right: 30px;
+    &:after {
+      top: 9.25px;
+      left: 1.25px;
+      transform: rotate(-45deg)
+    }
+    &:before {
+      top: 18px;
+      left: 10.25px;
+      transform: rotate(-135deg)
+    }
+    &:after, &:before {
+      box-sizing: border-box;
+      position: absolute;
+      height: 0;
+      width: 5px;
+      background-color: #34b93d;
+      display: inline-block;
+      transform-origin: left top;
+      border-radius: 5px;
+      content: " ";
+      transition: opacity .5s ease
+    }
+  }
+  input:checked {
+    + label {
+      border-color: #34b93d;
+      &:after {
+        height: 12.5px;
+        animation: inputBottomCheck .2s ease;
+      }
+      &:before {
+        height: 30px;
+        animation: inputTopCheck .4s ease;
+      }
+    }
+  }
   .todo-preview-title {
     font-size: 20px;
-  }
-  .todo-preview-content {
-    font-size: 12px;
   }
   .todo-preview-delete {
     position: absolute;

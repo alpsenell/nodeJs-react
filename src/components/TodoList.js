@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TodoPreview from './TodoPreview';
 
-const TodoList = ({ todos, onTodoClick, onDeleteClick }) => {
+const TodoList = ({ todos, onDeleteClick, onCheckboxClick }) => {
     return (
         <div>
             {
                 todos.map(todo =>
                     <TodoPreview
-                        onTodoClick={ onTodoClick }
                         onDeleteClick={ onDeleteClick }
+                        onCheckboxClick={ onCheckboxClick }
                         key={ todo._id } { ...todo } />
                 )
             }
@@ -19,8 +19,8 @@ const TodoList = ({ todos, onTodoClick, onDeleteClick }) => {
 
 TodoList.propTypes = {
     todos: PropTypes.array,
-    onTodoClick: PropTypes.func.isRequired,
     onDeleteClick: PropTypes.func.isRequired,
+    onCheckboxClick: PropTypes.func.isRequired
 };
 
 export default TodoList;

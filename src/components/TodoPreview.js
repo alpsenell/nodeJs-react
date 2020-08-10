@@ -2,24 +2,32 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class TodoPreview extends Component {
-    handleClick = () => {
-        console.log('handle todo click');
-        // this.props.onTodoClick(this.props._id);
-    };
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
+        status: PropTypes.bool.isRequired,
+        onDeleteClick: PropTypes.func.isRequired,
+        onCheckboxClick: PropTypes.func.isRequired,
+    }
 
     handleDelete = () => {
-        console.log('handle delete click');
         this.props.onDeleteClick(this.props._id);
+    };
+
+    handleCheck = () => {
+        this.props.onCheckboxClick(this.props._id);
     };
 
     render () {
         return (
-            <div className="todo-item-preview" onClick={ this.handleClick }>
+            <div className="todo-item-preview">
+                <input type="checkbox"
+                    id={ `todo-checkbox-${ this.props._id }` }
+                    checked={ this.props.status }
+                    onChange={ this.handleCheck }/>
+                <label htmlFor={ `todo-checkbox-${ this.props._id }` }></label>
                 <div className="todo-preview-title">
                     { this.props.title }
-                </div>
-                <div className="todo-preview-content">
-                    { this.props.content }
                 </div>
                 <div className="todo-preview-delete"
                     onClick={ this.handleDelete }></div>
@@ -27,13 +35,5 @@ class TodoPreview extends Component {
         );
     }
 }
-
-TodoPreview.propTypes = {
-    title: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    onTodoClick: PropTypes.func.isRequired,
-    onDeleteClick: PropTypes.func.isRequired,
-};
 
 export default TodoPreview;

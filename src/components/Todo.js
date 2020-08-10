@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Todo extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
+        content: PropTypes.string,
         todoListClick: PropTypes.func
     };
 
