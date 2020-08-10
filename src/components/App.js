@@ -77,6 +77,18 @@ class App extends Component {
         return this.state.todos[this.state.currentTodoId];
     };
 
+    deleteTodo = (todoId) => {
+        axios.delete(`/api/todo/${todoId}`)
+            .then(response => {
+                if (response.status === 200) {
+                    this.fetchTodoList();
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
     currentContent = () => {
         if (this.state.currentTodoId) {
             return <Todo
@@ -86,6 +98,7 @@ class App extends Component {
 
         return <TodoList
             onTodoClick={ this.fetchTodo }
+            onDeleteClick={ this.deleteTodo }
             todos={ this.state.todos }/>;
     }
 

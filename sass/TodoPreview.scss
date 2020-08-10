@@ -1,0 +1,38 @@
+.todo-item-preview {
+  margin: 10px 0;
+  cursor: pointer;
+  color: #fefefe;
+  position: relative;
+  .todo-preview-title {
+    font-size: 20px;
+  }
+  .todo-preview-content {
+    font-size: 12px;
+  }
+  .todo-preview-delete {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 32px;
+    opacity: 0.3;
+    height: 32px;
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+    &:before, &:after {
+      position: absolute;
+      left: 15px;
+      content: " ";
+      height: 32px;
+      width: 2px;
+      background-color: #fefefe;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

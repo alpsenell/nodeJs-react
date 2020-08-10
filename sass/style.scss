@@ -1,4 +1,5 @@
 @import "AddTodo";
+@import "TodoPreview";
 
 body, html {
   padding: 0;
@@ -19,17 +20,6 @@ body, html {
     }
     &.todos-accomplished {
       color: #34b93d;
-    }
-  }
-  .todo-item-preview {
-    border: 1px solid darkgray;
-    cursor: pointer;
-    color: #fefefe;
-    .todo-preview-title {
-      font-size: 20px;
-    }
-    .todo-preview-content {
-      font-size: 12px;
     }
   }
   .home-link {
