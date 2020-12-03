@@ -10,9 +10,9 @@ class AddTodo extends Component {
         todoTitle: ''
     };
 
-    handleChange = (event) => {
+    handleChange = ({ target: { value } }) => {
         this.setState({
-            todoTitle: event.target.value
+            todoTitle: value
         });
     };
 

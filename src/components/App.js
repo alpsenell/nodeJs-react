@@ -47,8 +47,16 @@ class App extends Component {
 
     checkTodoAlreadyExist = title => this.state.todos.some(todo => todo.title === title);
 
+    isBlank = title => title.trim() === '';
+
     addTodoClick = (todo) => {
-        if (this.checkTodoAlreadyExist(todo.title)) {
+        const { title } = todo;
+
+        if (this.isBlank(title)) {
+            return false;
+        }
+
+        if (this.checkTodoAlreadyExist(title)) {
             return false;
         }
 
